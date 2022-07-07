@@ -17,7 +17,7 @@ public class Categoria implements Serializable {
     private String nome;
     private String descricao;
 
-    @OneToMany
+    @OneToMany(fetch=FetchType.EAGER)
     private List<Livro> livros = new ArrayList<>();
 
     public Long getId() {
