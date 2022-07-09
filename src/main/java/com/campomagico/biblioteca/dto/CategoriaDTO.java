@@ -3,7 +3,9 @@ package com.campomagico.biblioteca.dto;
 import com.campomagico.biblioteca.model.Categoria;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 @Getter @Setter
@@ -12,7 +14,11 @@ public class CategoriaDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
+    @NotEmpty(message = "É necessário digitar um nome")
+    @Length(min = 3,  max = 50, message = "O campo 'nome' deve ter de 3 a 50 caracteres")
     private String nome;
+    @NotEmpty(message = "É necessário digitar a descrição")
+    @Length(min = 10, max = 500, message = "O campo 'descrição' deve ter entre 10 a 500 caracteres")
     private String descricao;
 
     public CategoriaDTO(Categoria obj) {

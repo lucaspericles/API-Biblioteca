@@ -3,8 +3,10 @@ package com.campomagico.biblioteca.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -17,8 +19,13 @@ public class Livro implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotEmpty(message = "É necessário digitar um título")
+    @Length(min = 3,  max = 50, message = "O campo 'título' deve ter de 3 a 50 caracteres")
     private String titulo;
+    @NotEmpty(message = "É necessário digitar o nome do autor")
     private String autor;
+    @NotEmpty(message = "É necessário especificar o resumo")
+    @Length(min = 20,  max = 200000, message = "O campo 'nome' deve ter de 3 a 50 caracteres")
     private String sinopse;
 
     @JsonIgnore
