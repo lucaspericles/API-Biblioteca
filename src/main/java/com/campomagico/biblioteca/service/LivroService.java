@@ -1,5 +1,6 @@
 package com.campomagico.biblioteca.service;
 
+import com.campomagico.biblioteca.model.Categoria;
 import com.campomagico.biblioteca.model.Livro;
 import com.campomagico.biblioteca.repository.LivroRepository;
 import com.campomagico.biblioteca.service.exceptions.ObjectNotFoundException;
@@ -39,5 +40,12 @@ public class LivroService {
         newObj.setTitulo((obj.getTitulo()));
         newObj.setAutor(obj.getAutor());
         newObj.setSinopse(obj.getSinopse());
+    }
+
+    public Livro create(Long id_cat, Livro obj) {
+        obj.setId(null);
+        Categoria categoria = categoriaService.findById(id_cat);
+        obj.setCategoria(categoria);
+        return livroRepository.save(obj);
     }
 }
