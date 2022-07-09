@@ -41,4 +41,10 @@ public class CategoriaDTO implements Serializable {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
+    public CategoriaDTO(Long id, String nome, String descricao) {
+        this.id = id;
+        this.nome = nome;
+        this.descricao = descricao;
+    }
 }

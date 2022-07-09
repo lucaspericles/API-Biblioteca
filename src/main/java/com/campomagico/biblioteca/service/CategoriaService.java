@@ -1,5 +1,6 @@
 package com.campomagico.biblioteca.service;
 
+import com.campomagico.biblioteca.dto.CategoriaDTO;
 import com.campomagico.biblioteca.model.Categoria;
 import com.campomagico.biblioteca.repository.CategoriaRepository;
 import com.campomagico.biblioteca.service.exceptions.ObjectNotFoundException;
@@ -25,6 +26,13 @@ public class CategoriaService {
 
     public Categoria create (Categoria obj){
         obj.setId(null);
+        return categoriaRepository.save(obj);
+    }
+
+    public Categoria update(Long id, CategoriaDTO categoriaDTO) {
+        Categoria obj = findById(id);
+        obj.setNome(categoriaDTO.getNome());
+        obj.setDescricao(categoriaDTO.getDescricao());
         return categoriaRepository.save(obj);
     }
 }
