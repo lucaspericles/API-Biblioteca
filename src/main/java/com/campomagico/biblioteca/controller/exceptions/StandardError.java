@@ -1,4 +1,4 @@
-package com.campomagico.biblioteca.service.exceptions;
+package com.campomagico.biblioteca.controller.exceptions;
 
 public class StandardError {
 

@@ -3,6 +3,7 @@ package com.campomagico.biblioteca.service;
 import com.campomagico.biblioteca.dto.CategoriaDTO;
 import com.campomagico.biblioteca.model.Categoria;
 import com.campomagico.biblioteca.repository.CategoriaRepository;
+import com.campomagico.biblioteca.service.exceptions.DataIntegrityViolationException;
 import com.campomagico.biblioteca.service.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,5 +40,11 @@ public class CategoriaService {
     public void delete(Long id) {
         findById(id);
         categoriaRepository.deleteById(id);
+
+        try {
+            categoriaRepository.deleteById(id);
+        } catch (DataIntegrityViolationException e){
+            throw new com.campomagico.biblioteca.service.exceptions.DataIntegrityViolationException("Ops, a categoria não pode ser deletada, existe livros associados.");
+        }
     }
 }
